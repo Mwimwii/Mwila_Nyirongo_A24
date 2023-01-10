@@ -21,15 +21,33 @@ export const useInnerWidth = () => {
 const LiveBrowserWidth = () => {
   const [innerWidth, setInnerWidth] = useInnerWidth()
   const containerRef = React.useRef(null)
-  const [containerHeight, setContainerHeight] = React.useState(0)
+  const [containerHeight, setContainerHeight] = React.useState<string>(null)
+  const [nanError, setNanError] = React.useState(false)
 
+  React.useEffect(() => {
+    if (containerHeight) {
+      setContainerHeight(containerRef.current.clientHeight)
+    }
+  }, [])
+
+  React.useEffect(() => {
+    if(isNan(Number(containerHeight)){
+      setNanError(true)
+    } else {
+      setNanError(false)
+      containerRef.current.style.height = containerHeight
+    }
+  },[containerHeight])
   const handleInputChange = () => { 
     console.log(containerRef)
   }
 
+
   return (
-    <div ref={containerRef} className="container" value={ containerHeight ? containerHeight : 200 }>
-      <input type="number" min="0" onBlur={handleInputChange}/>
+    <div ref={containerRef} className="container">
+
+      <input type="number" min="0" onKeyDown={handleInputChange} defaultValue={containerHeight && cotainerHeight}/>
+      <p>Incorrect container height value, please enter a proper value int (0...)</p> 
       <h1>InnerWidth: {innerWidth as number}</h1>
     </div>) 
 }
