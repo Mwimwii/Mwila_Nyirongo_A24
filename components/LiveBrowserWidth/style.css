@@ -1,5 +1,9 @@
+
 .container {
-  border: 10px;
-  border-radius: 4;
-  border-color: black;
+ border: 10px solid black;
+ border-radius: 4;
+}
+ 
+p.error {
+ color: red;
 }
