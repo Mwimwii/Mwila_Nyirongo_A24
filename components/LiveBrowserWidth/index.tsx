@@ -31,7 +31,7 @@ const LiveBrowserWidth = () => {
   }, [])
 
   React.useEffect(() => {
-    if(isNan(Number(containerHeight))){
+    if(isNaN(Number(containerHeight))){
       setNanError(true)
     } else {
       setNanError(false)
