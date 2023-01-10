@@ -1,1 +1,1 @@
-export { default as WidthDisplay } from './WidthDisplay'
+export { default as LiveBrowserWidth } from './LiveBrowserWidth'
