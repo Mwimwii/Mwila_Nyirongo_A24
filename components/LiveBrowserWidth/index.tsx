@@ -31,15 +31,20 @@ const LiveBrowserWidth = () => {
   }, [])
 
   React.useEffect(() => {
-    if(isNan(Number(containerHeight)){
+    if(isNan(Number(containerHeight))){
       setNanError(true)
     } else {
       setNanError(false)
-      containerRef.current.style.height = containerHeight
+      containerRef.current.style.height = containerHeight + 'px'
     }
   },[containerHeight])
-  const handleInputChange = () => { 
-    console.log(containerRef)
+
+  const handleInputChange = (e) => { 
+    if(e.key === 'Backspace'){
+      setContainerHeight(1)
+    } else {
+      setContainerHeight(containerHeight + e.key)
+    }
   }
 
 
