@@ -18,9 +18,9 @@ export const useInnerWidth = () => {
  return [innerWidth, setInnerWidth];
 };
  
-const useContainerHeight = () => {
+const useContainerHeight = (divHeight: string) => {
  const containerRef = React.useRef(null)
- const [containerHeight, setContainerHeight] = React.useState<string>(null)
+ const [containerHeight, setContainerHeight] = React.useState<string>(divHeight || null)
  const [nanError, setNanError] = React.useState(false)
  
  React.useEffect(() => {
@@ -58,9 +58,9 @@ handleInputChange,
  
 }
  
-const LiveBrowserWidth = () => {
- const [innerWidth, setInnerWidth] = useInnerWidth()
- const {containerRef, containerHeight, nanError, handleInputChange} = useContainerHeight()
+const LiveBrowserWidth = ({divHeight}) => {
+ const [innerWidth] = useInnerWidth()
+ const {containerRef, containerHeight, nanError, handleInputChange} = useContainerHeight(divHeight)
   return (
    <div ref={containerRef} className="container">
  
